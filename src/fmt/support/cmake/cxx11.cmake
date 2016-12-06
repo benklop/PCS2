@@ -11,7 +11,8 @@ if (FMT_USE_CPP11)
   if (HAVE_STD_CPP11_FLAG)
     # Check if including cmath works with -std=c++11 and -O3.
     # It may not in MinGW due to bug http://ehc.ac/p/mingw/bugs/2250/.
-    set(CMAKE_REQUIRED_FLAGS "-std=c++11 -O3")
+    set(CMAKE_REQUIRED_FLAGS "-O3")
+    set(CMAKE_CXX_FLAGS "-std=c++11")
     check_cxx_source_compiles("
       #include <cmath>
       int main() {}" FMT_CPP11_CMATH)
@@ -42,7 +43,7 @@ if (CMAKE_CXX_STANDARD)
   set(CPP11_FLAG )
 endif ()
 
-set(CMAKE_REQUIRED_FLAGS ${CPP11_FLAG})
+set(CMAKE_CXX_FLAGS ${CPP11_FLAG})
 
 # Check if variadic templates are working and not affected by GCC bug 39653:
 # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=39653
